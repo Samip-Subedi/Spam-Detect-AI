@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Spam Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <i class="fas fa-envelope-open-text"></i>
+        <h1>Email Spam Detector</h1>
+        <p class="subtitle">Protect your inbox with AI-powered spam detection.</p>
+    </div>
+
+    <!-- Input Form -->
+    <form action="/predict" method="POST" class="input-group">
+        <textarea 
+            name="email_text" 
+            placeholder="Type or paste your email here..." 
+            required>{{ email_text }}</textarea>
+        <button type="submit" class="submit-btn">
+            <i class="fas fa-search"></i>
+            Analyze your Email
+        </button>
+    </form>
+
+    <!-- Spam Detection Result -->
+    {% if prediction %}
+    <div class="result {% if prediction == 'Spam' %}spam{% else %}not-spam{% endif %}">
+        <div class="result-icon">
+            {% if prediction == 'Spam' %}
+                <i class="fas fa-exclamation-triangle"></i>
+            {% else %}
+                <i class="fas fa-check-circle"></i>
+            {% endif %}
+        </div>
+        <div class="result-text">
+            <h3>{{ prediction }}</h3>
+        </div>
+    </div>
+    {% endif %}
+
+</body>
+</html>

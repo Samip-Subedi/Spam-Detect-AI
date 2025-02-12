@@ -1,0 +1,12 @@
+# Ignore system files
+__pycache__/
+*.pyc
+.DS_Store
+
+# Ignore virtual environments
+venv/
+.env
+
+# Ignore large dataset files
+dataset/*.csv
+models/*.pkl
